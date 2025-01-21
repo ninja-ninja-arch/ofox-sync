@@ -10,7 +10,7 @@
 
 # the branches we will be dealing with
 FOX_BRANCH="fox_10.0";
-TWRP_BRANCH="twrp-10.0";
+TWRP_BRANCH="twrp-10.0-deprecated";
 DEVICE_BRANCH="android-10";
 
 # the base version of the current OrangeFox
@@ -68,7 +68,7 @@ init_script() {
 
 # repo init and repo sync
 get_twrp_minimal_manifest() {
-  local MIN_MANIFEST="git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git"
+  local MIN_MANIFEST="https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-10.0-deprecated"
   cd $MANIFEST_DIR
   echo "-- Initialising the $TWRP_BRANCH minimal manifest repo ..."
   repo init --depth=1 -u $MIN_MANIFEST -b $TWRP_BRANCH
@@ -105,12 +105,12 @@ local URL
 
    if [ ! -d "device/qcom/common" ]; then
    	echo "-- Cloning qcom common ..."
-	git clone https://github.com/TeamWin/android_device_qcom_common -b $DEVICE_BRANCH device/qcom/common
+	git clone https://github.com/TeamWin/android_device_qcom_common -b android-10 device/qcom/common
    fi
 
    if [ ! -d "device/qcom/twrp-common" ]; then
    	echo "-- Cloning twrp-common ..."
-	git clone https://github.com/TeamWin/android_device_qcom_twrp-common -b $DEVICE_BRANCH device/qcom/twrp-common
+	git clone https://github.com/TeamWin/android_device_qcom_twrp-common -b android-10 device/qcom/twrp-common
    fi
 }
 
